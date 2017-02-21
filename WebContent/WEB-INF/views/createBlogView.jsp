@@ -34,43 +34,35 @@
 
 	<jsp:include page="_header.jsp"></jsp:include>
 	<div class="page_container">
-		<h3>Travel BlogCatの新規</h3>
+		<h3 >Travel Catの新規</h3>
 		<p style="color: red;">${errorString}</p>
-		<form method="POST" action="createBlog">
-			<table border="0">
-				<tr>
-					<td>場所名</td>
-					<td><input type="text" name="local_ID" placeholder="観光地"
-						list="ListLocations" id="local_ID"> </input> <datalist
-							id="ListLocations"> <select name="local_ID">
-							<c:forEach var="item" items="${listLocations}">
-								<option value="${item.local_ID}">${item.name}</option>
-							</c:forEach>
-						</select> </datalist></td>
-				</tr>
-				<tr>
-					<td>タイトル</td>
-					<td><input type="text" name="title" value="${local.title}" /></td>
-				</tr>
-				<tr>
-					<td>コンテンツ</td>
-					<td><textarea rows="20	" cols="50" name="contents">${local.contents}</textarea></td>
-				</tr>
-				<tr>
-					<td>画像</td>
-					<td><input type="text" name="url" value="${local.image_ID}" /></td>
-				</tr>
-				<tr>
-					<td>駅</td>
-					<td><input type="text" name="station" value="${local.station}" /></td>
-				</tr>
-				<tr>
-					<td colspan="2"><input type="submit" value="登録する" /> <a
-						href="travel">戻す</a></td>
-				</tr>
-			</table>
-		</form>
-	</div>
+			<form method="POST" action="createBlog">
+				<table border="0">
+					<tr>
+						<td>場所名</td>
+						<td><input type="text" name="name" value="${local.name}" /></td>
+					</tr>
+					<tr>
+						<td>詳細</td>
+						<td><textarea rows="20	" cols="50" name="content">${local.content}</textarea></td>
+					</tr>
+					<tr>
+						<td>アドレス</td>
+						<td><input type="text" name="address"
+							value="${local.address}" /></td>
+					</tr>
+					<tr>
+						<td>駅</td>
+						<td><input type="text" name="station"
+							value="${local.station}" /></td>
+					</tr>
+					<tr>
+						<td colspan="2"><input type="submit" value="登録する" /> <a
+							href="travel">戻す</a></td>
+					</tr>
+				</table>
+			</form>
+		</div>
 	<jsp:include page="_footer.jsp"></jsp:include>
 </body>
 </html>

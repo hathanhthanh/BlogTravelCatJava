@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -13,16 +14,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import utils.DBUtils;
 import utils.MyUtils;
 import DAO.BlogDAO;
 import DAO.ImageDAO;
 import beans.Blog;
 import beans.Image;
+import beans.Location;
 import beans.UserAccount;
 
+/**
+ * Servlet implementation class TravelServlet
+ */
 @WebServlet(urlPatterns = { "/travelBlog" })
 public class TravelServlet extends HttpServlet {
-	
+	private static final long serialVersionUID = 1L;
+
+	public TravelServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@SuppressWarnings({ "null", "deprecation" })
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -35,7 +48,9 @@ public class TravelServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/login");
 			return;
 		}
+		Connection conn = MyUtils.getStoredConnection(request);
 		String errorString = null;
+		List<Location> listTravel = null;
 		List<Image> listImage = null;
 		List<Blog> listBlog = null;
 		Blog lastNewBlog = new Blog();
@@ -43,6 +58,7 @@ public class TravelServlet extends HttpServlet {
 		BlogDAO blogDB = new BlogDAO();
 
 		try {
+			listTravel = DBUtils.queryTravel(conn);
 			listBlog = blogDB.getBlog(loginedUser.getUserName());
 			if(listBlog.isEmpty()==false)
 			{
@@ -64,7 +80,7 @@ public class TravelServlet extends HttpServlet {
 		}
 		// Add request attribute before forward to views
 		request.setAttribute("errorString", errorString);
-		//request.setAttribute("listTravel", listTravel);
+		request.setAttribute("listTravel", listTravel);
 		request.setAttribute("listBlog", listBlog);
 		request.setAttribute("lastNewBlog", lastNewBlog);
 		request.setAttribute("listImage", listImage);

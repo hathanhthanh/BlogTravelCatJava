@@ -35,16 +35,18 @@
 								</li>
 								<li><a href="${pageContext.request.contextPath}/travelBlog">Travel</a>
 								</li>
-									<li class="sub-menu"><a
-										href="${pageContext.request.contextPath}/location">観光地</a>
-										<ul>
-											<li><a href="scaffolding.html"><span>-</span>観光地TOP</a>
-											</li>
-											<li><a href="typography.html"><span>-</span>観光地＆BlogCat</a>
-											</li>
-											<li><a href="shortcodes.html"><span>-</span>Search</a></li>
-										</ul></li>
-									<li class="sub-menu"><a href="javascript:{}">Portfolio</a>
+								<li class="sub-menu"><a href="javascript:{}">Features</a>
+									<ul>
+										<li><a href="scaffolding.html"><span>-</span>Scaffolding</a>
+										</li>
+										<li><a href="typography.html"><span>-</span>Typography</a>
+										</li>
+										<li><a href="shortcodes.html"><span>-</span>Shortcodes</a>
+										</li>
+										<li><a href="tables.html"><span>-</span>Tables</a>
+										</li>
+									</ul></li>
+								<li class="sub-menu"><a href="javascript:{}">Portfolio</a>
 									<ul>
 										<li><a href="portfolio_2columns.html"><span>-</span>2
 												Columns</a>

@@ -14,13 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import utils.DBUtils;
 import utils.MyUtils;
-import DAO.LocationDAO;
 import beans.Location;
 
 @WebServlet(urlPatterns={"/home"})
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static LocationDAO locationDB = new LocationDAO();
 
 	public HomeServlet() {
 		super();
@@ -31,10 +29,16 @@ public class HomeServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/WEB-INF/views/homeView.jsp");
+		Connection conn = MyUtils.getStoredConnection(request);
 		String errorString = null;
-		List<Location> listTravel = null;		
-		listTravel = locationDB.getLocations();
-			
+		List<Location> listTravel = null;
+		
+			try {
+				listTravel = DBUtils.queryTravel(conn);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		
 		// Add request attribute before forward to views
 		 request.setAttribute("errorString", errorString);

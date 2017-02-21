@@ -15,13 +15,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import utils.DBUtils;
 import utils.MyUtils;
-import DAO.LocationDAO;
 import beans.Location;
 
 @WebServlet(urlPatterns = {"/editBlog"})
 public class EditBlogServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static LocationDAO locationDB = new LocationDAO();
+
+	public EditBlogServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -31,7 +34,7 @@ public class EditBlogServlet extends HttpServlet {
 		Location location = null;
 		String errorString = null;
 		try {
-			location = locationDB.findLocation(conn, Local_ID);
+			location = DBUtils.findLocation(conn, Local_ID);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -72,7 +75,7 @@ public class EditBlogServlet extends HttpServlet {
 		
 		String errorString = null;
 		try {
-			locationDB.updateLocaltion(conn, location);
+			DBUtils.updateLocaltion(conn, location);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
