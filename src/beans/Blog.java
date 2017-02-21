@@ -3,6 +3,8 @@ package beans;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Blog {
 
@@ -79,7 +81,17 @@ public class Blog {
 	private Date publish_Date;
 	private Date last_Edit;
 	private int status;
-    private Image image = new Image();
+	
+	//¡ŒãA‰ü‘P@1Blog -> n Images
+    private List<Image> listImage = new ArrayList<Image>();
+	public List<Image> getListImage() {
+		return listImage;
+	}
+
+	public void setListImage(List<Image> listImage) {
+		this.listImage = listImage;
+	}
+	private Image image = new Image();
 	public Image getImage() {
 		return image;
 	}
@@ -87,6 +99,9 @@ public class Blog {
 	public void setImage(Image image) {
 		this.image = image;
 	}
+
+	// 1 Blog -> 1 Location
+	// 1 Location -> n Blogs
 	private Location location = new Location();
 	
 	
@@ -114,5 +129,7 @@ public class Blog {
 		image.setUrl(rs.getString("images.Url"));
 		location.setName(rs.getString("locations.Name"));
 		location.setAddress(rs.getString("locations.Address"));
+		/*Image image = new Image(rs);
+		listImage.add(image);*/
 	}
 }

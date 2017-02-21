@@ -1,8 +1,10 @@
 package beans;
 
 import java.sql.Date;
-
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Location {
 	public Location() {
@@ -90,4 +92,28 @@ public class Location {
 	private Date publish_Date;
 	private Date last_Edit;
 	private int status;
+
+	private List<Image> listImage = new ArrayList<Image>();
+
+	public List<Image> getListImage() {
+		return listImage;
+	}
+
+	public void setListImage(List<Image> listImage) {
+		this.listImage = listImage;
+	}
+
+	public Location(ResultSet rs) throws SQLException {
+		local_ID = rs.getInt("Local_ID");
+		parent_ID = rs.getInt("Parent_ID");
+		name = rs.getString("Name");
+		content = rs.getString("Content");
+		address = rs.getString("Address");
+		station = rs.getString("Station");
+		publish_Date = rs.getDate("Publish_Date");
+		last_Edit = rs.getDate("Last_Edit");
+		status = rs.getInt("Status");
+		/*Image image = new Image(rs);
+		listImage.add(image);*/
+	}
 }

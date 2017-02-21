@@ -83,14 +83,13 @@
 										<a href="#">${item.getLocation().getName()}</a>
 									</div>
 									<div class="news">
-										筆者: <a href="#">${item.userName}</a> /
-										<a href="#">${item.title}</a>
+										筆者: <a href="#">${item.userName}</a> / <a href="#">${item.title}</a>
 									</div>
 									<div class="news_info">${item.contents}<a href="#">...</a>
 									</div>
 									<div class="clear"></div>
 								</li>
-							</c:forEach>							
+							</c:forEach>
 						</ul>
 					</div>
 				</div>
@@ -99,29 +98,6 @@
 		<!--Latest news-->
 
 
-		<p style="color: red;">${errorString}</p>
-		<a href="createBlog">BlogCat 追加</a>
-		<table border="1" cellpadding="5" cellspacing="1">
-			<tr>
-				<th>番号</th>
-				<th>場所名</th>
-				<th>駅</th>
-				<th>詳細</th>
-				<th>アドレス</th>
-				<th>行動</th>
-			</tr>
-			<c:forEach var="item" items="${listTravel}">
-				<tr>
-					<td>${item.local_ID}</td>
-					<td>${item.name}</td>
-					<td>${item.station}</td>
-					<td>${item.content}</td>
-					<td>${item.address}</td>
-					<td><a href="editBlog?local_ID=${item.local_ID}">更新</a> | <a
-						href="deleteBlog?local_ID=${item.local_ID}">削除</a></td>
-				</tr>
-			</c:forEach>
-		</table>
 		<hr>
 		<!--featured works-->
 
@@ -147,7 +123,6 @@
 			</div>
 		</div>
 		<!--//featured works-->
-
 	</div>
 	<jsp:include page="_footer.jsp"></jsp:include>
 	<!--//page_container-->

@@ -13,14 +13,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import utils.DBUtils;
 import utils.MyUtils;
 import DAO.LocationDAO;
 import beans.Location;
 
-@WebServlet(urlPatterns = {"/editBlog"})
-public class EditBlogServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+@WebServlet("/editLocation")
+public class EditLocationServlet extends HttpServlet {
+
 	private static LocationDAO locationDB = new LocationDAO();
 
 	protected void doGet(HttpServletRequest request,
@@ -39,14 +38,14 @@ public class EditBlogServlet extends HttpServlet {
 		}
 		// this location is not exist
 		if(errorString!=null && location == null){
-			response.sendRedirect(request.getServletPath() + "/travel");
+			response.sendRedirect(request.getServletPath() + "/location");
 			return;
 		}
 		//
 		request.setAttribute("errorString", errorString);
 		request.setAttribute("location", location);
 		RequestDispatcher dispatcher = request.getServletContext()
-				.getRequestDispatcher("/WEB-INF/views/editBlogView.jsp");
+				.getRequestDispatcher("/WEB-INF/views/editLocationView.jsp");
 		dispatcher.forward(request, response);
 	}
 	
@@ -85,13 +84,14 @@ public class EditBlogServlet extends HttpServlet {
 		// error problem => forward edit view
 		if(errorString!= null){
 			RequestDispatcher dispatcher = request.getServletContext()
-					.getRequestDispatcher("/WEB-INF/views/editBlogView.jsp");
+					.getRequestDispatcher("/WEB-INF/views/editLocationView.jsp");
 			dispatcher.forward(request, response);
 		}
 		else{
-			response.sendRedirect(request.getContextPath() + "/travel");
+			response.sendRedirect(request.getContextPath() + "/location");
 		}
 		
 	}
+
 
 }
